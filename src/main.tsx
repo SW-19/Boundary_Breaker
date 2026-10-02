@@ -106,7 +106,7 @@ const copy: Record<Lang, Copy> = {
     nav: { about: '关于', expertise: '能力', projects: '项目', contact: '联系' },
     hero: {
       title: '你好，我是刘幻',
-      subtitle: 'AI 与数据科学',
+      subtitle: '数据科学与AI辅助',
       role: '用数据建模、自动化 Pipeline 与智能优化，把复杂科研系统转化为可度量、可验证、可迭代的决策。',
       contact: '联系我',
     },
@@ -128,15 +128,15 @@ const copy: Record<Lang, Copy> = {
           description: '高维特征筛选、连续变量分箱、相关性与共线性分析，以及 LASSO、随机森林、LightGBM、SVR、神经网络等模型。',
         },
         {
-          name: '智能优化',
+          name: '多目标优化',
           description: '将神经网络代理模型与遗传算法、启发式搜索结合，用于高维复杂空间的参数寻优与智能决策。',
         },
         {
-          name: '数据工程',
+          name: '多模态数据处理',
           description: '使用 Python / SQL 构建端到端数据清洗、特征提取与批处理 Pipeline，覆盖图像、传感器和高频时序数据。',
         },
         {
-          name: '科学计算',
+          name: '数理计算',
           description: '计算机视觉、分子动力学、有限元仿真与物理机理分析，实现跨尺度数据与理论的交叉验证。',
         },
       ],
