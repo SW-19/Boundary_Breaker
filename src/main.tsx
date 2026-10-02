@@ -324,7 +324,7 @@ function LanguageButton({ lang, setLang }: { lang: Lang; setLang: (v: Lang) => v
 
 function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => void; t: Copy }) {
   return (
-    <section className="relative h-screen overflow-x-clip bg-[#070B14]">
+    <section className="relative flex min-h-screen flex-col overflow-x-clip bg-[#070B14] px-6 md:px-10">
   {/* 深色宇宙渐变 */}
   <div
     className="pointer-events-none absolute inset-0"
@@ -376,34 +376,136 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         </nav>
       </FadeIn>
 
-      <div className="relative z-20 overflow-hidden">
-        <FadeIn delay={0.15} y={40}>
-          <h1 className="hero-heading mt-6 w-full whitespace-nowrap text-[12vw] font-black uppercase leading-none tracking-tight sm:mt-4 sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[14.8vw]">
-            {lang === 'en' ? "Hi, i'm leo" : '你好，我是刘幻'}
-          </h1>
-        </FadeIn>
+<h1
+  className="
+    hero-heading
+    mt-5
+    w-full
+    whitespace-nowrap
+    text-center
+    text-[12vw]
+    font-black
+    uppercase
+    leading-none
+    tracking-tight
+    sm:text-[12vw]
+    md:mt-2
+    md:text-[11vw]
+    lg:text-[10.5vw]
+  "
+>
       </div>
 
-      <FadeIn delay={0.6} y={30} className="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:bottom-0 sm:top-auto sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]">
-        <Magnet>
-          <div className="relative mx-auto w-[78%] overflow-hidden rounded-t-[110px] border-x border-t border-[#D7E2EA]/15 bg-gradient-to-b from-[#22242a] to-[#0c0c0c] shadow-[0_-20px_80px_rgba(182,0,168,.14)] sm:w-[82%]">
-            <div className="absolute inset-0 grid-glow opacity-75" />
-            <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Fancy Leo portrait" className="relative z-10 h-auto w-full object-cover object-top mix-blend-lighten" />
-          </div>
-        </Magnet>
-      </FadeIn>
+      {/* 标题下方：左侧介绍 + 右侧人物 */}
+<div
+  className="
+    relative
+    z-20
+    mt-6
+    grid
+    flex-1
+    grid-cols-1
+    items-center
+    gap-10
+    pb-8
+    md:mt-4
+    md:grid-cols-[0.9fr_1.1fr]
+    md:gap-14
+    md:pb-10
+    lg:grid-cols-[0.85fr_1.15fr]
+    lg:gap-20
+  "
+>
+  {/* 左侧：AI & DATA SCIENCE + 简介 + Contact */}
+  <FadeIn delay={0.35} y={20}>
+    <div
+      className="
+        flex
+        max-w-[520px]
+        flex-col
+        justify-center
+        text-[#D7E2EA]
+      "
+    >
+      {/* 专业方向 */}
+      <p
+        className="
+          mb-5
+          text-xs
+          font-semibold
+          uppercase
+          tracking-[0.30em]
+          text-cyan-200/60
+          sm:text-sm
+          md:text-base
+        "
+      >
+        {t.hero.subtitle}
+      </p>
 
-      <div className="relative z-20 mt-auto flex items-end justify-between gap-5 pb-7 sm:pb-8 md:pb-10">
-        <FadeIn delay={0.35} y={20}>
-          <div className="max-w-[160px] text-[#D7E2EA] sm:max-w-[220px] md:max-w-[290px]">
-            <p className="mb-2 text-[10px] font-medium uppercase tracking-[.24em] text-[#D7E2EA]/45">{t.hero.subtitle}</p>
-            <p className="text-[clamp(.75rem,1.4vw,1.5rem)] font-light uppercase leading-snug tracking-wide">{t.hero.role}</p>
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.5} y={20}>
-          <ContactButton label={t.hero.contact} />
-        </FadeIn>
+      {/* 简介文字 */}
+      <p
+        className="
+          text-[clamp(1rem,1.65vw,1.55rem)]
+          font-light
+          uppercase
+          leading-[1.5]
+          tracking-wide
+          text-[#D7E2EA]
+        "
+      >
+        {t.hero.role}
+      </p>
+
+      {/* Contact 按钮 */}
+      <div className="mt-8 md:mt-10">
+        <ContactButton label={t.hero.contact} />
       </div>
+    </div>
+  </FadeIn>
+
+  {/* 右侧：个人照片 */}
+  <FadeIn delay={0.55} y={30}>
+    <div className="flex justify-center md:justify-end">
+      <Magnet>
+        <div
+          className="
+            relative
+            w-[280px]
+            overflow-hidden
+            rounded-[42px]
+            border
+            border-[#D7E2EA]/15
+            bg-gradient-to-b
+            from-[#22242a]
+            to-[#0c0c0c]
+            shadow-[0_0_90px_rgba(99,102,241,0.22)]
+            sm:w-[330px]
+            md:w-[370px]
+            lg:w-[410px]
+            xl:w-[430px]
+          "
+        >
+          <div className="absolute inset-0 grid-glow opacity-60" />
+
+          <img
+            src={`${import.meta.env.BASE_URL}profile.png`}
+            alt="Fancy Leo portrait"
+            className="
+              relative
+              z-10
+              block
+              h-auto
+              w-full
+              object-cover
+              object-top
+            "
+          />
+        </div>
+      </Magnet>
+    </div>
+  </FadeIn>
+</div>
     </section>
   );
 }
