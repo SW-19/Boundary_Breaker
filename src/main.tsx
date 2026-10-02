@@ -383,7 +383,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
     w-full
     whitespace-nowrap
     text-center
-    text-[12vw]
+    text-[10vw]
     font-black
     uppercase
     leading-none
@@ -457,10 +457,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         {t.hero.role}
       </p>
 
-      {/* Contact 按钮 */}
-      <div className="mt-8 md:mt-10">
-        <ContactButton label={t.hero.contact} />
-      </div>
+      
     </div>
   </FadeIn>
 
