@@ -324,7 +324,46 @@ function LanguageButton({ lang, setLang }: { lang: Lang; setLang: (v: Lang) => v
 
 function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => void; t: Copy }) {
   return (
-    <section className="relative flex h-screen min-h-[680px] flex-col overflow-x-clip bg-[#0C0C0C] px-6 md:px-10">
+    <section className="relative h-screen overflow-x-clip bg-[#070B14]">
+  {/* 深色宇宙渐变 */}
+  <div
+    className="pointer-events-none absolute inset-0"
+    style={{
+      background: `
+        radial-gradient(circle at 18% 22%, rgba(56, 189, 248, 0.16), transparent 30%),
+        radial-gradient(circle at 78% 30%, rgba(99, 102, 241, 0.18), transparent 32%),
+        radial-gradient(circle at 52% 78%, rgba(168, 85, 247, 0.12), transparent 30%),
+        linear-gradient(180deg, #070B14 0%, #090D18 48%, #0C0C0C 100%)
+      `,
+    }}
+  />
+
+  {/* 数据网格 */}
+  <div
+    className="pointer-events-none absolute inset-0 opacity-[0.20]"
+    style={{
+      backgroundImage: `
+        linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px)
+      `,
+      backgroundSize: '48px 48px',
+      maskImage:
+        'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
+      WebkitMaskImage:
+        'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
+    }}
+  />
+
+  {/* 中央发光光晕 */}
+  <div className="pointer-events-none absolute left-1/2 top-[42%] h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[110px]" />
+
+  {/* 左侧蓝色光晕 */}
+  <div className="pointer-events-none absolute -left-32 top-24 h-[360px] w-[360px] rounded-full bg-blue-500/10 blur-[100px]" />
+
+  {/* 右侧紫色光晕 */}
+  <div className="pointer-events-none absolute -right-28 top-32 h-[420px] w-[420px] rounded-full bg-violet-500/10 blur-[120px]" />
+
+  {/* 你原本 HeroSection 的内容从这里继续 */}
       <FadeIn y={-20}>
         <nav className="flex items-center justify-between pt-6 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] md:pt-8 md:text-lg lg:text-[1.4rem]">
           <div className="flex flex-1 items-center justify-between gap-3 pr-4 md:gap-7 md:pr-8">
@@ -339,7 +378,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
 
       <div className="overflow-hidden">
         <FadeIn delay={0.15} y={40}>
-          <h1 className="hero-heading mt-6 w-full whitespace-nowrap text-[14vw] font-black uppercase leading-none tracking-tight sm:mt-4 sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[14.8vw]">
+          <h1 className="hero-heading mt-6 w-full whitespace-nowrap text-[12vw] font-black uppercase leading-none tracking-tight sm:mt-4 sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[14.8vw]">
             {lang === 'en' ? "Hi, i'm leo" : '你好，我是刘幻'}
           </h1>
         </FadeIn>
