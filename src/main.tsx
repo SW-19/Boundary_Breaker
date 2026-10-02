@@ -349,7 +349,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         <Magnet>
           <div className="relative mx-auto w-[78%] overflow-hidden rounded-t-[110px] border-x border-t border-[#D7E2EA]/15 bg-gradient-to-b from-[#22242a] to-[#0c0c0c] shadow-[0_-20px_80px_rgba(182,0,168,.14)] sm:w-[82%]">
             <div className="absolute inset-0 grid-glow opacity-75" />
-            <img src="/profile.png" alt="Fancy Leo portrait" className="relative z-10 h-auto w-full object-cover object-top mix-blend-lighten" />
+            <img src={`${import.meta.env.BASE_URL}profile.png`} alt="Fancy Leo portrait" className="relative z-10 h-auto w-full object-cover object-top mix-blend-lighten" />
           </div>
         </Magnet>
       </FadeIn>
