@@ -365,7 +365,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
 
   {/* 你原本 HeroSection 的内容从这里继续 */}
       <FadeIn y={-20}>
-        <nav className="flex items-center justify-between pt-6 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] md:pt-8 md:text-lg lg:text-[1.4rem]">
+        <nav className="relative z-20 flex items-center justify-between pt-6 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] md:pt-8 md:text-lg lg:text-[1.4rem]">
           <div className="flex flex-1 items-center justify-between gap-3 pr-4 md:gap-7 md:pr-8">
             <a className="transition-opacity duration-200 hover:opacity-70" href="#about">{t.nav.about}</a>
             <a className="transition-opacity duration-200 hover:opacity-70" href="#expertise">{t.nav.expertise}</a>
@@ -376,7 +376,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         </nav>
       </FadeIn>
 
-      <div className="overflow-hidden">
+      <div className="relative z-20 overflow-hidden">
         <FadeIn delay={0.15} y={40}>
           <h1 className="hero-heading mt-6 w-full whitespace-nowrap text-[12vw] font-black uppercase leading-none tracking-tight sm:mt-4 sm:text-[15vw] md:-mt-5 md:text-[16vw] lg:text-[14.8vw]">
             {lang === 'en' ? "Hi, i'm leo" : '你好，我是刘幻'}
