@@ -38,7 +38,7 @@ const copy: Record<Lang, Copy> = {
     nav: { about: 'About', expertise: 'Expertise', projects: 'Projects', contact: 'Contact' },
     hero: {
       title: "Hi, I'm Leo",
-      subtitle: 'AI & DATA SCIENCE',
+      subtitle: 'DATA & AI',
       role: 'A data scientist turning complex scientific systems into measurable models, scalable pipelines and intelligent decisions.',
       contact: 'Contact Me',
     },
@@ -106,8 +106,8 @@ const copy: Record<Lang, Copy> = {
     nav: { about: '关于', expertise: '能力', projects: '项目', contact: '联系' },
     hero: {
       title: '你好，我是刘幻',
-      subtitle: '数据科学与AI辅助',
-      role: '用数据建模、自动化 Pipeline 与智能优化，把复杂科研系统转化为可度量、可验证、可迭代的决策。',
+      subtitle: '数据与AI',
+      role: '数学建模\n多目标优化\n多模态数据分析 Pipeline\n机器学习与人工智能',
       contact: '联系我',
     },
     about: {
