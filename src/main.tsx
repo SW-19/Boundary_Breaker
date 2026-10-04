@@ -325,45 +325,45 @@ function LanguageButton({ lang, setLang }: { lang: Lang; setLang: (v: Lang) => v
 function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => void; t: Copy }) {
   return (
     <section className="relative flex min-h-screen flex-col overflow-x-clip bg-[#070B14] px-6 md:px-10">
-  {/* 深色宇宙渐变 */}
-  <div
-    className="pointer-events-none absolute inset-0"
-    style={{
-      background: `
-        radial-gradient(circle at 18% 22%, rgba(56, 189, 248, 0.16), transparent 30%),
-        radial-gradient(circle at 78% 30%, rgba(99, 102, 241, 0.18), transparent 32%),
-        radial-gradient(circle at 52% 78%, rgba(168, 85, 247, 0.12), transparent 30%),
-        linear-gradient(180deg, #070B14 0%, #090D18 48%, #0C0C0C 100%)
-      `,
-    }}
-  />
+      {/* 深色宇宙渐变 */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(circle at 18% 22%, rgba(56, 189, 248, 0.16), transparent 30%),
+            radial-gradient(circle at 78% 30%, rgba(99, 102, 241, 0.18), transparent 32%),
+            radial-gradient(circle at 52% 78%, rgba(168, 85, 247, 0.12), transparent 30%),
+            linear-gradient(180deg, #070B14 0%, #090D18 48%, #0C0C0C 100%)
+          `,
+        }}
+      />
 
-  {/* 数据网格 */}
-  <div
-    className="pointer-events-none absolute inset-0 opacity-[0.20]"
-    style={{
-      backgroundImage: `
-        linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px)
-      `,
-      backgroundSize: '48px 48px',
-      maskImage:
-        'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
-      WebkitMaskImage:
-        'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
-    }}
-  />
+      {/* 数据网格 */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.20]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+          maskImage:
+            'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
+        }}
+      />
 
-  {/* 中央发光光晕 */}
-  <div className="pointer-events-none absolute left-1/2 top-[42%] h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[110px]" />
+      {/* 中央发光光晕 */}
+      <div className="pointer-events-none absolute left-1/2 top-[42%] h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[110px]" />
 
-  {/* 左侧蓝色光晕 */}
-  <div className="pointer-events-none absolute -left-32 top-24 h-[360px] w-[360px] rounded-full bg-blue-500/10 blur-[100px]" />
+      {/* 左侧蓝色光晕 */}
+      <div className="pointer-events-none absolute -left-32 top-24 h-[360px] w-[360px] rounded-full bg-blue-500/10 blur-[100px]" />
 
-  {/* 右侧紫色光晕 */}
-  <div className="pointer-events-none absolute -right-28 top-32 h-[420px] w-[420px] rounded-full bg-violet-500/10 blur-[120px]" />
+      {/* 右侧紫色光晕 */}
+      <div className="pointer-events-none absolute -right-28 top-32 h-[420px] w-[420px] rounded-full bg-violet-500/10 blur-[120px]" />
 
-  {/* 你原本 HeroSection 的内容从这里继续 */}
+      {/* 导航栏 */}
       <FadeIn y={-20}>
         <nav className="relative z-20 flex items-center justify-between pt-6 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] md:pt-8 md:text-lg lg:text-[1.4rem]">
           <div className="flex flex-1 items-center justify-between gap-3 pr-4 md:gap-7 md:pr-8">
@@ -376,134 +376,126 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         </nav>
       </FadeIn>
 
-<h1
-  className="
-    hero-heading
-    mt-5
-    w-full
-    whitespace-nowrap
-    text-center
-    text-[10vw]
-    font-black
-    uppercase
-    leading-none
-    tracking-tight
-    sm:text-[12vw]
-    md:mt-2
-    md:text-[11vw]
-    lg:text-[10.5vw]
-  "
->
-  </h1>
+      {/* Hero 大标题 */}
+      <div className="relative z-20 overflow-hidden">
+        <FadeIn delay={0.15} y={40}>
+          <h1
+            className="
+              hero-heading
+              mt-5
+              w-full
+              whitespace-nowrap
+              text-center
+              text-[10vw]
+              font-black
+              uppercase
+              leading-none
+              tracking-tight
+              sm:text-[12vw]
+              md:mt-2
+              md:text-[11vw]
+              lg:text-[10.5vw]
+            "
+          >
+            {lang === 'en' ? "HI, I'M LEO" : '你好，我是刘幻'}
+          </h1>
+        </FadeIn>
       </div>
 
       {/* 标题下方：左侧介绍 + 右侧人物 */}
-<div
-  className="
-    relative
-    z-20
-    mt-6
-    grid
-    flex-1
-    grid-cols-1
-    items-center
-    gap-10
-    pb-8
-    md:mt-4
-    md:grid-cols-[0.9fr_1.1fr]
-    md:gap-14
-    md:pb-10
-    lg:grid-cols-[0.85fr_1.15fr]
-    lg:gap-20
-  "
->
-  {/* 左侧：AI & DATA SCIENCE + 简介 + Contact */}
-  <FadeIn delay={0.35} y={20}>
-    <div
-      className="
-        flex
-        max-w-[520px]
-        flex-col
-        justify-center
-        text-[#D7E2EA]
-      "
-    >
-      {/* 专业方向 */}
-      <p
+      <div
         className="
-          mb-5
-          text-xs
-          font-semibold
-          uppercase
-          tracking-[0.30em]
-          text-cyan-200/60
-          sm:text-sm
-          md:text-base
+          relative
+          z-20
+          mt-6
+          grid
+          flex-1
+          grid-cols-1
+          items-center
+          gap-10
+          pb-8
+          md:mt-4
+          md:grid-cols-[0.9fr_1.1fr]
+          md:gap-14
+          md:pb-10
+          lg:grid-cols-[0.85fr_1.15fr]
+          lg:gap-20
         "
       >
-        {t.hero.subtitle}
-      </p>
-
-      {/* 简介文字 */}
-      <p
-        className="
-          text-[clamp(1rem,1.65vw,1.55rem)]
-          font-light
-          uppercase
-          leading-[1.5]
-          tracking-wide
-          text-[#D7E2EA]
-        "
-      >
-        {t.hero.role}
-      </p>
-
-      
-    </div>
-  </FadeIn>
-
-  {/* 右侧：个人照片 */}
-  <FadeIn delay={0.55} y={30}>
-    <div className="flex justify-center md:justify-end">
-      <Magnet>
-        <div
-          className="
-            relative
-            w-[280px]
-            overflow-hidden
-            rounded-[42px]
-            border
-            border-[#D7E2EA]/15
-            bg-gradient-to-b
-            from-[#22242a]
-            to-[#0c0c0c]
-            shadow-[0_0_80px_rgba(99,102,241,0.18)]
-            sm:w-[330px]
-            md:w-[370px]
-            lg:w-[400px]
-            xl:w-[430px]
-          "
-        >
-          <div className="absolute inset-0 grid-glow opacity-60" />
-
-          <img
-            src={`${import.meta.env.BASE_URL}profile.png`}
-            alt="Fancy Leo portrait"
+        {/* 左侧：AI & DATA SCIENCE + 简介 */}
+        <FadeIn delay={0.35} y={20}>
+          <div
             className="
-              relative
-              z-10
-              block
-              h-auto
-              w-full
-              object-cover
-              object-top
+              flex
+              max-w-[520px]
+              flex-col
+              justify-center
+              text-[#D7E2EA]
             "
-          />
-        </div>
-      </Magnet>
-    </div>
-  </FadeIn>
-</div>
+          >
+            <p
+              className="
+                mb-5
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.30em]
+                text-cyan-200/60
+                sm:text-sm
+                md:text-base
+              "
+            >
+              {t.hero.subtitle}
+            </p>
+
+            <p
+              className="
+                text-[clamp(1rem,1.65vw,1.55rem)]
+                font-light
+                uppercase
+                leading-[1.5]
+                tracking-wide
+                text-[#D7E2EA]
+              "
+            >
+              {t.hero.role}
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* 右侧：个人照片 */}
+        <FadeIn delay={0.55} y={30}>
+          <div className="flex justify-center md:justify-end">
+            <Magnet>
+              <div
+                className="
+                  relative
+                  w-[280px]
+                  overflow-hidden
+                  rounded-[42px]
+                  border
+                  border-[#D7E2EA]/15
+                  bg-gradient-to-b
+                  from-[#22242a]
+                  to-[#0c0c0c]
+                  shadow-[0_0_80px_rgba(99,102,241,0.18)]
+                  sm:w-[330px]
+                  md:w-[370px]
+                  lg:w-[400px]
+                  xl:w-[430px]
+                "
+              >
+                <div className="absolute inset-0 grid-glow opacity-60" />
+                <img
+                  src={`${import.meta.env.BASE_URL}profile.png`}
+                  alt="Fancy Leo portrait"
+                  className="relative z-10 block h-auto w-full object-cover object-top"
+                />
+              </div>
+            </Magnet>
+          </div>
+        </FadeIn>
+      </div>
     </section>
   );
 }
