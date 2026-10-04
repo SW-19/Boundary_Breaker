@@ -7,7 +7,6 @@ import {
   type MotionValue,
 } from 'framer-motion';
 import {
-  ArrowUpRight,
   BrainCircuit,
   Database,
   Languages,
@@ -138,10 +137,11 @@ const copy: Record<Lang, Copy> = {
       tags: [
         '数学建模',
         '多目标优化',
-        '多模态数据 Pipeline',
+        '多模态数据',
         '机器学习',
         '人工智能',
-        '科学计算',
+        '数值模拟',
+        '物理机制',
       ],
       contact: '联系我',
     },
@@ -182,21 +182,21 @@ const copy: Record<Lang, Copy> = {
       items: [
         {
           category: '机器学习 + 优化',
-          name: '功能材料性能预测与多参数优化',
+          name: '基于神经网络与遗传算法的功能材料性能预测与多参数优化',
           description: '完成特征相关性分析、回归模型对比、神经网络代理建模与遗传算法寻优，并通过靶向实验形成“数据挖掘—代理模型—决策寻优—实验验证”的闭环。',
-          metrics: ['15.3 GHz 最优频段', '9.0 W 输入', '15.2 mV 稳定输出'],
+          metrics: ['机器学习', '优化算法', '电子功能材料'],
         },
         {
           category: '多模态数据',
-          name: '中国空间站大规模多模态数据自动化处理 Pipeline',
+          name: '中国空间站大规模多模态时序与图像数据自动化处理 Pipeline 搭建',
           description: '将高频温度时序与大规模图像流按时间戳严格对应，自动提取图像特征，把非结构化实验数据转化为结构化高维特征数据库。',
-          metrics: ['百万级图像', '时序 + 图像', '地面—空间实验流程'],
+          metrics: ['百万级图像', '太空算力', '时序数据'],
         },
         {
           category: '计算机视觉',
-          name: '软磁材料多维指标调控模型',
-          description: '利用图像分割、结构描述符、多元回归、特征重要性和损耗分离算法，量化微观结构对多频段电磁损耗的边际影响。',
-          metrics: ['SEM/TEM/EBSD', '视觉 + 统计学习', '物理 + 数据融合'],
+          name: '基于计算机视觉与数值模拟的软磁材料构效机理研究',
+          description: '利用图像分割建立结构描述符，采用分子动力学模拟和相场模拟建立物理模型，量化微观结构对多频段电磁损耗的作用机制。',
+          metrics: ['图像处理', '数值模拟', '物理模型'],
         },
       ],
     },
@@ -482,7 +482,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
                 <div className="pointer-events-none absolute inset-[-14%] rounded-full bg-violet-500/10 blur-3xl" />
 
                 <img
-                  src={`${import.meta.env.BASE_URL}profile.png`}
+                  src={`${import.meta.env.BASE_URL}Profile- transparent- cartoon.png`}
                   alt="Fancy Leo portrait"
                   className="relative z-10 block h-auto w-full object-cover object-top opacity-95"
                   style={{
@@ -707,13 +707,11 @@ function ProjectCard({
   total,
   item,
   images,
-  live,
 }: {
   index: number;
   total: number;
   item: Copy['projects']['items'][number];
   images: string[];
-  live: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
@@ -721,40 +719,67 @@ function ProjectCard({
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
   return (
-    <div ref={ref} className="relative h-[85vh] min-h-[680px]">
+    <div ref={ref} className="relative h-[100vh] min-h-[820px]">
       <motion.article
         style={{ scale, top: `${index * 28}px` }}
         className="sticky top-24 overflow-hidden rounded-[40px] border border-[#D7E2EA]/35 bg-[#070B14]/85 p-4 backdrop-blur-xl sm:top-28 sm:rounded-[50px] sm:p-6 md:top-32 md:rounded-[60px] md:p-8"
       >
-        <div className="mb-5 grid gap-4 border-b border-[#D7E2EA]/15 pb-5 md:grid-cols-[120px_1fr_auto] md:items-end md:gap-8 md:pb-7">
-          <span className="hero-heading text-[clamp(4rem,8vw,120px)] font-black leading-none">{String(index + 1).padStart(2, '0')}</span>
+        <div className="mb-5 grid gap-4 border-b border-[#D7E2EA]/15 pb-5 md:grid-cols-[120px_1fr] md:items-end md:gap-8 md:pb-7">
+          <span className="hero-heading text-[clamp(4rem,8vw,120px)] font-black leading-none">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+
           <div>
-            <div className="mb-2 text-xs font-medium uppercase tracking-[.22em] text-[#D7E2EA]/45 sm:text-sm">{item.category}</div>
-            <h3 className="max-w-3xl text-2xl font-semibold uppercase leading-tight text-[#D7E2EA] sm:text-3xl md:text-[clamp(2rem,4vw,3.8rem)]">{item.name}</h3>
+            <div className="mb-2 text-xs font-medium uppercase tracking-[.22em] text-[#D7E2EA]/45 sm:text-sm">
+              {item.category}
+            </div>
+            <h3 className="max-w-4xl text-2xl font-semibold uppercase leading-tight text-[#D7E2EA] sm:text-3xl md:text-[clamp(2rem,4vw,3.8rem)]">
+              {item.name}
+            </h3>
           </div>
-          <a href="#contact" className="inline-flex h-fit items-center justify-center gap-2 rounded-full border-2 border-[#D7E2EA] px-6 py-3 text-xs font-medium uppercase tracking-widest text-[#D7E2EA] transition hover:bg-[#D7E2EA]/10 sm:px-8 sm:text-sm">
-            {live}<ArrowUpRight size={16} />
-          </a>
         </div>
 
-        <div className="mb-5 grid gap-3 md:grid-cols-[40%_60%]">
+        {/* 项目说明移到图片上方，避免下一张 sticky 卡片遮住底部文字 */}
+        <p className="mb-5 max-w-5xl text-sm font-light leading-relaxed text-[#D7E2EA]/70 sm:text-base md:text-lg">
+          {item.description}
+        </p>
+
+        <div className="grid gap-3 md:grid-cols-[40%_60%]">
           <div className="grid gap-3">
-            <img src={images[0]} alt="Template visual" loading="lazy" className="h-[clamp(130px,16vw,230px)] w-full rounded-[30px] object-cover sm:rounded-[40px] md:rounded-[50px]" />
-            <img src={images[1]} alt="Template visual" loading="lazy" className="h-[clamp(160px,22vw,340px)] w-full rounded-[30px] object-cover sm:rounded-[40px] md:rounded-[50px]" />
+            <img
+              src={images[0]}
+              alt="Template visual"
+              loading="lazy"
+              className="h-[clamp(130px,16vw,230px)] w-full rounded-[30px] object-cover sm:rounded-[40px] md:rounded-[50px]"
+            />
+            <img
+              src={images[1]}
+              alt="Template visual"
+              loading="lazy"
+              className="h-[clamp(160px,22vw,340px)] w-full rounded-[30px] object-cover sm:rounded-[40px] md:rounded-[50px]"
+            />
           </div>
+
           <div className="relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[50px]">
-            <img src={images[2]} alt="Template visual" loading="lazy" className="h-full min-h-[320px] w-full object-cover md:min-h-0" />
+            <img
+              src={images[2]}
+              alt="Template visual"
+              loading="lazy"
+              className="h-full min-h-[320px] w-full object-cover md:min-h-0"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 grid gap-2 sm:grid-cols-3">
               {item.metrics.map((metric) => (
-                <div key={metric} className="rounded-full border border-white/20 bg-black/40 px-3 py-2 text-center text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-md sm:text-xs">
+                <div
+                  key={metric}
+                  className="rounded-full border border-white/20 bg-black/40 px-3 py-2 text-center text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-md sm:text-xs"
+                >
                   {metric}
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <p className="max-w-4xl text-sm font-light leading-relaxed text-[#D7E2EA]/70 sm:text-base md:text-lg">{item.description}</p>
       </motion.article>
     </div>
   );
@@ -778,7 +803,6 @@ function ProjectsSection({ t }: { t: Copy }) {
               total={t.projects.items.length}
               item={item}
               images={projectImages[index]}
-              live={t.projects.live}
             />
           ))}
         </div>
