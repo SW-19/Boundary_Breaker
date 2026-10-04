@@ -21,8 +21,19 @@ import './index.css';
 
 type Lang = 'en' | 'zh';
 type Copy = {
-  nav: { about: string; expertise: string; projects: string; contact: string };
-  hero: { title: string; subtitle: string; role: string; contact: string };
+  nav: {
+    about: string;
+    expertise: string;
+    projects: string;
+    honors: string;
+    contact: string;
+  };
+  hero: {
+    title: string;
+    subtitle: string;
+    tags: string[];
+    contact: string;
+  };
   about: { heading: string; body: string; badge: string };
   expertise: { heading: string; items: { name: string; description: string }[] };
   projects: {
@@ -30,16 +41,28 @@ type Copy = {
     live: string;
     items: { category: string; name: string; description: string; metrics: string[] }[];
   };
+  honors: {
+    heading: string;
+    subtitle: string;
+    placeholder: string;
+  };
   footer: { title: string; note: string };
 };
 
 const copy: Record<Lang, Copy> = {
   en: {
-    nav: { about: 'About', expertise: 'Expertise', projects: 'Projects', contact: 'Contact' },
+    nav: { about: 'About', expertise: 'Expertise', projects: 'Projects', honors: 'Honors', contact: 'Contact' },
     hero: {
       title: "Hi, I'm Leo",
       subtitle: 'DATA & AI',
-      role: 'A data scientist turning complex scientific systems into measurable models, scalable pipelines and intelligent decisions.',
+      tags: [
+        'Mathematical Modeling',
+        'Multi-objective Optimization',
+        'Multimodal Data Pipelines',
+        'Machine Learning',
+        'Artificial Intelligence',
+        'Scientific Computing',
+      ],
       contact: 'Contact Me',
     },
     about: {
@@ -97,17 +120,29 @@ const copy: Record<Lang, Copy> = {
         },
       ],
     },
+    honors: {
+      heading: 'Honors',
+      subtitle: 'Awards & Recognition',
+      placeholder: 'Add honor image',
+    },
     footer: {
       title: 'Build with data. Validate with evidence.',
       note: 'Portfolio adapted from the supplied visual brief. Replace template project imagery with original research visuals before public launch.',
     },
   },
   zh: {
-    nav: { about: '关于', expertise: '能力', projects: '项目', contact: '联系' },
+    nav: { about: '关于', expertise: '能力', projects: '项目', honors: '奖誉', contact: '联系' },
     hero: {
       title: '你好，我是刘幻',
-      subtitle: '数据与AI',
-      role: '数学建模\n多目标优化\n多模态数据分析 Pipeline\n机器学习与人工智能',
+      subtitle: '数据与 AI',
+      tags: [
+        '数学建模',
+        '多目标优化',
+        '多模态数据 Pipeline',
+        '机器学习',
+        '人工智能',
+        '科学计算',
+      ],
       contact: '联系我',
     },
     about: {
@@ -165,6 +200,11 @@ const copy: Record<Lang, Copy> = {
         },
       ],
     },
+    honors: {
+      heading: '奖誉',
+      subtitle: '竞赛 · 奖学金 · 荣誉',
+      placeholder: '添加奖誉图片',
+    },
     footer: {
       title: '用数据建模，用证据验证。',
       note: '页面依据你提供的视觉规范改造。正式公开前，建议将模板项目图片替换为你自己的科研图片或可公开成果。',
@@ -212,6 +252,13 @@ const projectImages = [
     'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85',
     'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85',
   ],
+];
+
+const honorImages: string[] = [
+  // 预留：把奖誉图片放进 public/honors/ 后，在这里加入路径，例如：
+  // `${import.meta.env.BASE_URL}honors/honor-01.jpg`,
+  // `${import.meta.env.BASE_URL}honors/honor-02.jpg`,
+  // `${import.meta.env.BASE_URL}honors/honor-03.jpg`,
 ];
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -322,12 +369,11 @@ function LanguageButton({ lang, setLang }: { lang: Lang; setLang: (v: Lang) => v
   );
 }
 
-function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => void; t: Copy }) {
+function CosmicBackground() {
   return (
-    <section className="relative flex min-h-screen flex-col overflow-x-clip bg-[#070B14] px-6 md:px-10">
-      {/* 深色宇宙渐变 */}
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#070B14]">
       <div
-        className="pointer-events-none absolute inset-0"
+        className="absolute inset-0"
         style={{
           background: `
             radial-gradient(circle at 18% 22%, rgba(56, 189, 248, 0.16), transparent 30%),
@@ -338,9 +384,8 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         }}
       />
 
-      {/* 数据网格 */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.20]"
+        className="absolute inset-0 opacity-[0.20]"
         style={{
           backgroundImage: `
             linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
@@ -348,35 +393,35 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
           `,
           backgroundSize: '48px 48px',
           maskImage:
-            'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.25))',
           WebkitMaskImage:
-            'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 70%, transparent)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.25))',
         }}
       />
 
-      {/* 中央发光光晕 */}
-      <div className="pointer-events-none absolute left-1/2 top-[42%] h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[110px]" />
+      <div className="absolute left-1/2 top-[42%] h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[110px]" />
+      <div className="absolute -left-32 top-24 h-[360px] w-[360px] rounded-full bg-blue-500/10 blur-[100px]" />
+      <div className="absolute -right-28 top-32 h-[420px] w-[420px] rounded-full bg-violet-500/10 blur-[120px]" />
+    </div>
+  );
+}
 
-      {/* 左侧蓝色光晕 */}
-      <div className="pointer-events-none absolute -left-32 top-24 h-[360px] w-[360px] rounded-full bg-blue-500/10 blur-[100px]" />
-
-      {/* 右侧紫色光晕 */}
-      <div className="pointer-events-none absolute -right-28 top-32 h-[420px] w-[420px] rounded-full bg-violet-500/10 blur-[120px]" />
-
-      {/* 导航栏 */}
+function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => void; t: Copy }) {
+  return (
+    <section className="relative flex min-h-screen flex-col px-6 md:px-10">
       <FadeIn y={-20}>
-        <nav className="relative z-20 flex items-center justify-between pt-6 text-sm font-medium uppercase tracking-wider text-[#D7E2EA] md:pt-8 md:text-lg lg:text-[1.4rem]">
-          <div className="flex flex-1 items-center justify-between gap-3 pr-4 md:gap-7 md:pr-8">
+        <nav className="relative z-20 flex items-center justify-between pt-6 text-[11px] font-medium uppercase tracking-wider text-[#D7E2EA] sm:text-xs md:pt-8 md:text-base lg:text-lg">
+          <div className="flex flex-1 items-center justify-between gap-2 pr-3 sm:gap-4 md:gap-6 md:pr-8">
             <a className="transition-opacity duration-200 hover:opacity-70" href="#about">{t.nav.about}</a>
             <a className="transition-opacity duration-200 hover:opacity-70" href="#expertise">{t.nav.expertise}</a>
             <a className="transition-opacity duration-200 hover:opacity-70" href="#projects">{t.nav.projects}</a>
+            <a className="transition-opacity duration-200 hover:opacity-70" href="#honors">{t.nav.honors}</a>
             <a className="transition-opacity duration-200 hover:opacity-70" href="#contact">{t.nav.contact}</a>
           </div>
           <LanguageButton lang={lang} setLang={setLang} />
         </nav>
       </FadeIn>
 
-      {/* Hero 大标题 */}
       <div className="relative z-20 overflow-hidden">
         <FadeIn delay={0.15} y={40}>
           <h1
@@ -402,7 +447,6 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         </FadeIn>
       </div>
 
-      {/* 标题下方：左侧介绍 + 右侧人物 */}
       <div
         className="
           relative
@@ -413,105 +457,90 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
           grid-cols-1
           items-center
           gap-10
-          pb-8
+          pb-10
           md:mt-4
           md:grid-cols-[0.9fr_1.1fr]
           md:gap-14
-          md:pb-10
           lg:grid-cols-[0.85fr_1.15fr]
           lg:gap-20
         "
       >
-        {/* 左侧：AI & DATA SCIENCE + 简介 */}
-        <FadeIn delay={0.35} y={20}>
-          <div
-            className="
-              flex
-              max-w-[520px]
-              flex-col
-              justify-center
-              text-[#D7E2EA]
-            whitespace-pre-line
-            md:ml-8
-            lg:ml-12
-            "
-          >
-            <p
-              className="
-                mb-5
-                text-xs
-                font-semibold
-                uppercase
-                tracking-[0.30em]
-                text-cyan-200/60
-                sm:text-lg
-                md:text-base
-              "
-            >
-              {t.hero.subtitle}
-            </p>
+        <FadeIn delay={0.45} y={30}>
+          <div className="flex justify-center md:justify-start md:pl-8 lg:pl-12">
+            <Magnet>
+              <div
+                className="
+                  relative
+                  w-[210px]
+                  sm:w-[240px]
+                  md:w-[270px]
+                  lg:w-[300px]
+                  xl:w-[320px]
+                "
+              >
+                <div className="pointer-events-none absolute inset-[-10%] rounded-full bg-cyan-400/10 blur-3xl" />
+                <div className="pointer-events-none absolute inset-[-14%] rounded-full bg-violet-500/10 blur-3xl" />
 
-            <p
-              className="
-                text-[clamp(1rem,1.65vw,1.55rem)]
-                font-light
-                uppercase
-                leading-[1.5]
-                tracking-wide
-                text-[#D7E2EA]
-              whitespace-pre-lineå
-              "
-            >
-              {t.hero.role}
-            </p>
+                <img
+                  src={`${import.meta.env.BASE_URL}profile.png`}
+                  alt="Fancy Leo portrait"
+                  className="relative z-10 block h-auto w-full object-cover object-top opacity-95"
+                  style={{
+                    WebkitMaskImage:
+                      'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
+                    maskImage:
+                      'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
+                    filter: 'drop-shadow(0 18px 36px rgba(0,0,0,0.28))',
+                  }}
+                />
+              </div>
+            </Magnet>
           </div>
         </FadeIn>
 
-        {/* 右侧：个人照片 */}
-<FadeIn delay={0.55} y={30}>
-  <div className="flex justify-center md:justify-end">
-    <Magnet>
-      <div
-        className="
-          relative
-          w-[220px]
-          sm:w-[260px]
-          md:w-[300px]
-          lg:w-[330px]
-          xl:w-[360px]
-         md:ml+8
-            lg:ml+12
-        "
-      >
-        {/* 背后柔和光晕，让人物更融入背景 */}
-        <div className="pointer-events-none absolute inset-[-8%] rounded-full bg-cyan-400/10 blur-3xl" />
-        <div className="pointer-events-none absolute inset-[-12%] rounded-full bg-violet-500/10 blur-3xl" />
+        <FadeIn delay={0.35} y={20}>
+          <div className="mx-auto flex max-w-[650px] flex-col justify-center text-[#D7E2EA] md:mx-0">
+            <p className="mb-6 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200/65 sm:text-base md:text-lg">
+              {t.hero.subtitle}
+            </p>
 
-        <img
-          src={`${import.meta.env.BASE_URL}profile.png`}
-          alt="Fancy Leo portrait"
-          className="
-            relative
-            z-10
-            block
-            h-auto
-            w-full
-            object-cover
-            object-top
-            opacity-95
-          "
-          style={{
-            WebkitMaskImage:
-              'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
-            maskImage:
-              'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
-            filter: 'drop-shadow(0 18px 36px rgba(0,0,0,0.28))',
-          }}
-        />
-      </div>
-    </Magnet>
-  </div>
-</FadeIn>
+            <div className="flex flex-wrap gap-3 sm:gap-4">
+              {t.hero.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="
+                    rounded-full
+                    border
+                    border-cyan-200/20
+                    bg-[#D7E2EA]/[0.045]
+                    px-4
+                    py-2.5
+                    text-xs
+                    font-medium
+                    uppercase
+                    tracking-[0.10em]
+                    text-[#D7E2EA]/90
+                    backdrop-blur-md
+                    transition
+                    duration-200
+                    hover:border-cyan-200/40
+                    hover:bg-cyan-200/[0.08]
+                    sm:px-5
+                    sm:py-3
+                    sm:text-sm
+                    md:text-base
+                  "
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-8 md:mt-10">
+              <ContactButton label={t.hero.contact} />
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
@@ -540,20 +569,22 @@ function MarqueeRow({ images, direction, offset }: { images: string[]; direction
 function MarqueeSection() {
   const ref = useRef<HTMLElement>(null);
   const [offset, setOffset] = useState(0);
+
   useEffect(() => {
     const update = () => {
       if (!ref.current) return;
       const sectionTop = ref.current.offsetTop;
       setOffset((window.scrollY - sectionTop + window.innerHeight) * 0.3);
     };
+
     update();
     window.addEventListener('scroll', update, { passive: true });
     return () => window.removeEventListener('scroll', update);
   }, []);
 
   return (
-    <section ref={ref} className="overflow-hidden bg-[#0C0C0C] pb-10 pt-24 sm:pt-32 md:pt-40" aria-label="Motion visual strip">
-      <div className="flex flex-col gap-3">
+    <section ref={ref} className="relative overflow-hidden pb-10 pt-24 sm:pt-32 md:pt-40" aria-label="Motion visual strip">
+      <div className="relative z-10 flex flex-col gap-3">
         <MarqueeRow images={marqueeImages.slice(0, 11)} direction="right" offset={offset} />
         <MarqueeRow images={marqueeImages.slice(11)} direction="left" offset={offset} />
       </div>
@@ -591,29 +622,33 @@ function AnimatedText({ text }: { text: string }) {
 function AboutSection({ t }: { t: Copy }) {
   return (
     <section id="about" className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-20 sm:px-8 md:px-10">
-      <FadeIn delay={0.1} x={-80} y={0} duration={0.9} className="absolute left-[1%] top-[4%] w-[120px] sm:left-[2%] sm:w-[160px] md:left-[4%] md:w-[210px]">
+      <FadeIn delay={0.1} x={-80} y={0} duration={0.9} className="absolute left-[1%] top-[4%] w-[120px] opacity-70 sm:left-[2%] sm:w-[160px] md:left-[4%] md:w-[210px]">
         <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png" alt="" className="w-full" />
       </FadeIn>
-      <FadeIn delay={0.25} x={-80} y={0} duration={0.9} className="absolute bottom-[8%] left-[3%] w-[100px] sm:left-[6%] sm:w-[140px] md:left-[10%] md:w-[180px]">
+      <FadeIn delay={0.25} x={-80} y={0} duration={0.9} className="absolute bottom-[8%] left-[3%] w-[100px] opacity-70 sm:left-[6%] sm:w-[140px] md:left-[10%] md:w-[180px]">
         <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png" alt="" className="w-full" />
       </FadeIn>
-      <FadeIn delay={0.15} x={80} y={0} duration={0.9} className="absolute right-[1%] top-[4%] w-[120px] sm:right-[2%] sm:w-[160px] md:right-[4%] md:w-[210px]">
+      <FadeIn delay={0.15} x={80} y={0} duration={0.9} className="absolute right-[1%] top-[4%] w-[120px] opacity-70 sm:right-[2%] sm:w-[160px] md:right-[4%] md:w-[210px]">
         <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png" alt="" className="w-full" />
       </FadeIn>
-      <FadeIn delay={0.3} x={80} y={0} duration={0.9} className="absolute bottom-[8%] right-[3%] w-[130px] sm:right-[6%] sm:w-[170px] md:right-[10%] md:w-[220px]">
+      <FadeIn delay={0.3} x={80} y={0} duration={0.9} className="absolute bottom-[8%] right-[3%] w-[130px] opacity-70 sm:right-[6%] sm:w-[170px] md:right-[10%] md:w-[220px]">
         <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png" alt="" className="w-full" />
       </FadeIn>
 
       <div className="relative z-10 flex max-w-4xl flex-col items-center gap-10 sm:gap-14 md:gap-16">
         <FadeIn y={40}>
-          <h2 className="hero-heading text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none tracking-tight">{t.about.heading}</h2>
+          <h2 className="hero-heading text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none tracking-tight">
+            {t.about.heading}
+          </h2>
         </FadeIn>
+
         <div className="flex flex-col items-center gap-5">
-          <div className="rounded-full border border-[#D7E2EA]/15 bg-[#D7E2EA]/[.04] px-4 py-2 text-center text-xs uppercase tracking-[.18em] text-[#D7E2EA]/70 sm:text-sm">
+          <div className="rounded-full border border-[#D7E2EA]/15 bg-[#D7E2EA]/[.04] px-4 py-2 text-center text-xs uppercase tracking-[.18em] text-[#D7E2EA]/70 backdrop-blur-md sm:text-sm">
             {t.about.badge}
           </div>
           <AnimatedText text={t.about.body} />
         </div>
+
         <div className="mt-0 sm:mt-2 md:mt-4">
           <ContactButton label={t.hero.contact} />
         </div>
@@ -626,30 +661,42 @@ const expertiseIcons = [Sigma, BrainCircuit, Orbit, Database, Network];
 
 function ServicesSection({ t }: { t: Copy }) {
   return (
-    <section id="expertise" className="rounded-t-[40px] bg-white px-5 py-20 text-[#0C0C0C] sm:rounded-t-[50px] sm:px-8 sm:py-24 md:rounded-t-[60px] md:px-10 md:py-32">
-      <FadeIn>
-        <h2 className="mb-16 text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none sm:mb-20 md:mb-28">{t.expertise.heading}</h2>
-      </FadeIn>
-      <div className="mx-auto max-w-5xl border-t border-black/15">
-        {t.expertise.items.map((item, i) => {
-          const Icon = expertiseIcons[i];
-          return (
-            <FadeIn key={item.name} delay={i * 0.1}>
-              <div className="grid grid-cols-[90px_1fr] gap-5 border-b border-black/15 py-8 sm:grid-cols-[150px_1fr] sm:gap-8 sm:py-10 md:grid-cols-[220px_1fr] md:gap-10 md:py-12">
-                <div className="flex items-start gap-2">
-                  <span className="text-[clamp(3rem,10vw,140px)] font-black leading-[.8]">{String(i + 1).padStart(2, '0')}</span>
-                </div>
-                <div className="flex flex-col gap-3 sm:gap-4">
-                  <div className="flex items-center gap-3">
-                    <Icon className="shrink-0" size={26} strokeWidth={1.7} />
-                    <h3 className="text-[clamp(1rem,2.2vw,2.1rem)] font-medium uppercase">{item.name}</h3>
+    <section id="expertise" className="relative overflow-hidden px-5 py-20 text-[#D7E2EA] sm:px-8 sm:py-24 md:px-10 md:py-32">
+      <div className="relative z-10">
+        <FadeIn>
+          <h2 className="hero-heading mb-16 text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none sm:mb-20 md:mb-28">
+            {t.expertise.heading}
+          </h2>
+        </FadeIn>
+
+        <div className="mx-auto max-w-5xl border-t border-[#D7E2EA]/15">
+          {t.expertise.items.map((item, i) => {
+            const Icon = expertiseIcons[i];
+            return (
+              <FadeIn key={item.name} delay={i * 0.1}>
+                <div className="grid grid-cols-[90px_1fr] gap-5 border-b border-[#D7E2EA]/15 py-8 sm:grid-cols-[150px_1fr] sm:gap-8 sm:py-10 md:grid-cols-[220px_1fr] md:gap-10 md:py-12">
+                  <div className="flex items-start gap-2">
+                    <span className="hero-heading text-[clamp(3rem,10vw,140px)] font-black leading-[.8]">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                   </div>
-                  <p className="max-w-2xl text-[clamp(.85rem,1.6vw,1.25rem)] font-light leading-relaxed opacity-60">{item.description}</p>
+
+                  <div className="flex flex-col gap-3 sm:gap-4">
+                    <div className="flex items-center gap-3">
+                      <Icon className="shrink-0 text-cyan-200/70" size={26} strokeWidth={1.7} />
+                      <h3 className="text-[clamp(1rem,2.2vw,2.1rem)] font-medium uppercase">
+                        {item.name}
+                      </h3>
+                    </div>
+                    <p className="max-w-2xl text-[clamp(.85rem,1.6vw,1.25rem)] font-light leading-relaxed text-[#D7E2EA]/60">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </FadeIn>
-          );
-        })}
+              </FadeIn>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -677,7 +724,7 @@ function ProjectCard({
     <div ref={ref} className="relative h-[85vh] min-h-[680px]">
       <motion.article
         style={{ scale, top: `${index * 28}px` }}
-        className="sticky top-24 overflow-hidden rounded-[40px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:top-28 sm:rounded-[50px] sm:p-6 md:top-32 md:rounded-[60px] md:p-8"
+        className="sticky top-24 overflow-hidden rounded-[40px] border border-[#D7E2EA]/35 bg-[#070B14]/85 p-4 backdrop-blur-xl sm:top-28 sm:rounded-[50px] sm:p-6 md:top-32 md:rounded-[60px] md:p-8"
       >
         <div className="mb-5 grid gap-4 border-b border-[#D7E2EA]/15 pb-5 md:grid-cols-[120px_1fr_auto] md:items-end md:gap-8 md:pb-7">
           <span className="hero-heading text-[clamp(4rem,8vw,120px)] font-black leading-none">{String(index + 1).padStart(2, '0')}</span>
@@ -715,14 +762,77 @@ function ProjectCard({
 
 function ProjectsSection({ t }: { t: Copy }) {
   return (
-    <section id="projects" className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] px-5 pb-20 pt-24 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 md:-mt-14 md:rounded-t-[60px] md:px-10 md:pb-28 md:pt-32">
-      <FadeIn>
-        <h2 className="hero-heading mb-14 text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none tracking-tight sm:mb-20">{t.projects.heading}</h2>
-      </FadeIn>
-      <div className="mx-auto max-w-7xl">
-        {t.projects.items.map((item, index) => (
-          <ProjectCard key={item.name} index={index} total={t.projects.items.length} item={item} images={projectImages[index]} live={t.projects.live} />
-        ))}
+    <section id="projects" className="relative overflow-hidden px-5 pb-20 pt-24 sm:px-8 md:px-10 md:pb-28 md:pt-32">
+      <div className="relative z-10">
+        <FadeIn>
+          <h2 className="hero-heading mb-14 text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none tracking-tight sm:mb-20">
+            {t.projects.heading}
+          </h2>
+        </FadeIn>
+
+        <div className="mx-auto max-w-7xl">
+          {t.projects.items.map((item, index) => (
+            <ProjectCard
+              key={item.name}
+              index={index}
+              total={t.projects.items.length}
+              item={item}
+              images={projectImages[index]}
+              live={t.projects.live}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HonorsSection({ t }: { t: Copy }) {
+  const slots: (string | null)[] = honorImages.length > 0 ? honorImages : [null, null, null];
+
+  return (
+    <section id="honors" className="relative flex min-h-screen items-center overflow-hidden px-5 py-24 sm:px-8 md:px-10 md:py-32">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        <FadeIn>
+          <h2 className="hero-heading text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none tracking-tight">
+            {t.honors.heading}
+          </h2>
+        </FadeIn>
+
+        <FadeIn delay={0.1} y={20}>
+          <p className="mx-auto mt-5 max-w-2xl text-center text-xs font-medium uppercase tracking-[0.28em] text-cyan-200/60 sm:text-sm md:text-base">
+            {t.honors.subtitle}
+          </p>
+        </FadeIn>
+
+        <div className="mt-14 rounded-[32px] border border-[#D7E2EA]/15 bg-[#D7E2EA]/[0.025] p-4 backdrop-blur-md sm:mt-18 sm:p-6 md:mt-20 md:rounded-[44px] md:p-8">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {slots.map((src, index) => (
+              <FadeIn key={`${src ?? 'placeholder'}-${index}`} delay={index * 0.08}>
+                {src ? (
+                  <div className="group relative aspect-[4/3] overflow-hidden rounded-[24px] border border-[#D7E2EA]/10 sm:rounded-[30px]">
+                    <img
+                      src={src}
+                      alt={`Honor ${index + 1}`}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070B14]/40 via-transparent to-transparent" />
+                  </div>
+                ) : (
+                  <div className="flex aspect-[4/3] items-center justify-center rounded-[24px] border border-dashed border-cyan-200/25 bg-[#070B14]/35 px-6 text-center sm:rounded-[30px]">
+                    <div>
+                      <Sparkles className="mx-auto mb-4 text-cyan-200/45" size={28} />
+                      <p className="text-xs font-medium uppercase tracking-[0.20em] text-[#D7E2EA]/45 sm:text-sm">
+                        {t.honors.placeholder} {String(index + 1).padStart(2, '0')}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </FadeIn>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -730,13 +840,18 @@ function ProjectsSection({ t }: { t: Copy }) {
 
 function Footer({ t }: { t: Copy }) {
   return (
-    <footer id="contact" className="relative overflow-hidden border-t border-[#D7E2EA]/10 bg-[#0C0C0C] px-5 py-24 sm:px-8 md:px-10 md:py-32">
-      <div className="absolute inset-0 grid-glow opacity-50" />
+    <footer id="contact" className="relative overflow-hidden border-t border-[#D7E2EA]/10 px-5 py-24 sm:px-8 md:px-10 md:py-32">
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center">
-        <Sparkles className="mb-6" size={34} />
-        <h2 className="hero-heading max-w-5xl text-[clamp(3rem,9vw,120px)] font-black uppercase leading-[.9] tracking-tight">{t.footer.title}</h2>
-        <div className="mt-10"><ContactButton label={t.hero.contact} /></div>
-        <p className="mt-10 max-w-2xl text-xs font-light leading-relaxed text-[#D7E2EA]/45 sm:text-sm">{t.footer.note}</p>
+        <Sparkles className="mb-6 text-cyan-200/70" size={34} />
+        <h2 className="hero-heading max-w-5xl text-[clamp(3rem,9vw,120px)] font-black uppercase leading-[.9] tracking-tight">
+          {t.footer.title}
+        </h2>
+        <div className="mt-10">
+          <ContactButton label={t.hero.contact} />
+        </div>
+        <p className="mt-10 max-w-2xl text-xs font-light leading-relaxed text-[#D7E2EA]/45 sm:text-sm">
+          {t.footer.note}
+        </p>
         <p className="mt-8 text-xs uppercase tracking-[.2em] text-[#D7E2EA]/35">© 2026 Fancy Leo</p>
       </div>
     </footer>
@@ -746,19 +861,25 @@ function Footer({ t }: { t: Copy }) {
 function App() {
   const [lang, setLang] = useState<Lang>('en');
   const t = copy[lang];
+
   useEffect(() => {
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.title = lang === 'zh' ? '刘幻｜AI 与数据科学' : 'Fancy Leo — AI & Data Science';
   }, [lang]);
 
   return (
-    <main className="overflow-x-clip bg-[#0C0C0C]">
-      <HeroSection lang={lang} setLang={setLang} t={t} />
-      <MarqueeSection />
-      <AboutSection t={t} />
-      <ServicesSection t={t} />
-      <ProjectsSection t={t} />
-      <Footer t={t} />
+    <main className="relative isolate overflow-x-clip bg-[#070B14] text-[#D7E2EA]">
+      <CosmicBackground />
+
+      <div className="relative z-10">
+        <HeroSection lang={lang} setLang={setLang} t={t} />
+        <MarqueeSection />
+        <AboutSection t={t} />
+        <ServicesSection t={t} />
+        <ProjectsSection t={t} />
+        <HonorsSection t={t} />
+        <Footer t={t} />
+      </div>
     </main>
   );
 }
