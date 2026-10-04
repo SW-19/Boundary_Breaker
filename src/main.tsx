@@ -464,37 +464,48 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
         </FadeIn>
 
         {/* 右侧：个人照片 */}
-        <FadeIn delay={0.55} y={30}>
-          <div className="flex justify-center md:justify-end">
-            <Magnet>
-              <div
-                className="
-                  relative
-                  w-[280px]
-                  overflow-hidden
-                  rounded-[42px]
-                  border
-                  border-[#D7E2EA]/15
-                  bg-gradient-to-b
-                  from-[#22242a]
-                  to-[#0c0c0c]
-                  shadow-[0_0_80px_rgba(99,102,241,0.18)]
-                  sm:w-[330px]
-                  md:w-[370px]
-                  lg:w-[400px]
-                  xl:w-[430px]
-                "
-              >
-                <div className="absolute inset-0 grid-glow opacity-60" />
-                <img
-                  src={`${import.meta.env.BASE_URL}profile.png`}
-                  alt="Fancy Leo portrait"
-                  className="relative z-10 block h-auto w-full object-cover object-top"
-                />
-              </div>
-            </Magnet>
-          </div>
-        </FadeIn>
+<FadeIn delay={0.55} y={30}>
+  <div className="flex justify-center md:justify-end">
+    <Magnet>
+      <div
+        className="
+          relative
+          w-[220px]
+          sm:w-[260px]
+          md:w-[300px]
+          lg:w-[330px]
+          xl:w-[360px]
+        "
+      >
+        {/* 背后柔和光晕，让人物更融入背景 */}
+        <div className="pointer-events-none absolute inset-[-8%] rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute inset-[-12%] rounded-full bg-violet-500/10 blur-3xl" />
+
+        <img
+          src={`${import.meta.env.BASE_URL}profile.png`}
+          alt="Fancy Leo portrait"
+          className="
+            relative
+            z-10
+            block
+            h-auto
+            w-full
+            object-cover
+            object-top
+            opacity-95
+          "
+          style={{
+            WebkitMaskImage:
+              'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
+            maskImage:
+              'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
+            filter: 'drop-shadow(0 18px 36px rgba(0,0,0,0.28))',
+          }}
+        />
+      </div>
+    </Magnet>
+  </div>
+</FadeIn>
       </div>
     </section>
   );
