@@ -431,6 +431,9 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
               flex-col
               justify-center
               text-[#D7E2EA]
+            whitespace-pre-line
+            md:ml-8
+            lg:ml-12
             "
           >
             <p
@@ -441,7 +444,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
                 uppercase
                 tracking-[0.30em]
                 text-cyan-200/60
-                sm:text-sm
+                sm:text-lg
                 md:text-base
               "
             >
@@ -456,6 +459,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
                 leading-[1.5]
                 tracking-wide
                 text-[#D7E2EA]
+              whitespace-pre-lineå
               "
             >
               {t.hero.role}
@@ -475,6 +479,8 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
           md:w-[300px]
           lg:w-[330px]
           xl:w-[360px]
+         md:ml+8
+            lg:ml+12
         "
       >
         {/* 背后柔和光晕，让人物更融入背景 */}
