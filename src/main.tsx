@@ -394,6 +394,7 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
     lg:text-[10.5vw]
   "
 >
+  </h1>
       </div>
 
       {/* 标题下方：左侧介绍 + 右侧人物 */}
