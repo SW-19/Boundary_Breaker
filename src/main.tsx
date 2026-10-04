@@ -53,7 +53,7 @@ const copy: Record<Lang, Copy> = {
     nav: { about: 'About', expertise: 'Expertise', projects: 'Projects', honors: 'Honors', contact: 'Contact' },
     hero: {
       title: "Hi, I'm Leo",
-      subtitle: 'DATA & AI',
+      subtitle: 'MY TAGS',
       tags: [
         'Mathematical Modeling',
         'Multi-objective Optimization',
@@ -133,7 +133,7 @@ const copy: Record<Lang, Copy> = {
     nav: { about: '关于', expertise: '能力', projects: '项目', honors: '奖誉', contact: '联系' },
     hero: {
       title: '你好，我是刘幻',
-      subtitle: '数据与 AI',
+      subtitle: '我的标签',
       tags: [
         '数学建模',
         '多目标优化',
@@ -459,14 +459,14 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
           gap-10
           pb-10
           md:mt-4
-          md:grid-cols-[0.9fr_1.1fr]
-          md:gap-14
-          lg:grid-cols-[0.85fr_1.15fr]
-          lg:gap-20
+          md:grid-cols-[1fr_1fr]
+          md:gap-8
+          lg:gap-10
+          xl:gap-12
         "
       >
         <FadeIn delay={0.45} y={30}>
-          <div className="flex justify-center md:justify-start md:pl-8 lg:pl-12">
+          <div className="flex justify-center md:justify-end md:pr-1 lg:pr-2 xl:pr-4">
             <Magnet>
               <div
                 className="
@@ -487,19 +487,20 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
                   className="relative z-10 block h-auto w-full object-cover object-top opacity-95"
                   style={{
                     WebkitMaskImage:
-                      'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
+                      'linear-gradient(to bottom, #000 0%, #000 68%, rgba(0,0,0,0.96) 76%, rgba(0,0,0,0.72) 84%, rgba(0,0,0,0.32) 92%, transparent 100%)',
                     maskImage:
-                      'radial-gradient(circle at 50% 38%, rgba(0,0,0,1) 46%, rgba(0,0,0,0.96) 58%, rgba(0,0,0,0.72) 74%, rgba(0,0,0,0.28) 86%, transparent 96%)',
-                    filter: 'drop-shadow(0 18px 36px rgba(0,0,0,0.28))',
+                      'linear-gradient(to bottom, #000 0%, #000 68%, rgba(0,0,0,0.96) 76%, rgba(0,0,0,0.72) 84%, rgba(0,0,0,0.32) 92%, transparent 100%)',
+                    filter: 'drop-shadow(0 18px 36px rgba(0,0,0,0.22))',
                   }}
                 />
+                <div className="pointer-events-none absolute bottom-[-8%] left-1/2 z-20 h-[34%] w-[125%] -translate-x-1/2 bg-gradient-to-t from-[#070B14]/95 via-[#070B14]/45 to-transparent blur-xl" />
               </div>
             </Magnet>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.35} y={20}>
-          <div className="mx-auto flex max-w-[650px] flex-col justify-center text-[#D7E2EA] md:mx-0">
+          <div className="mx-auto flex max-w-[650px] flex-col justify-center text-[#D7E2EA] md:mx-0 md:pl-1 lg:pl-2 xl:pl-4">
             <p className="mb-6 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200/65 sm:text-base md:text-lg">
               {t.hero.subtitle}
             </p>
@@ -733,7 +734,7 @@ function ProjectCard({
             <div className="mb-2 text-xs font-medium uppercase tracking-[.22em] text-[#D7E2EA]/45 sm:text-sm">
               {item.category}
             </div>
-            <h3 className="max-w-4xl text-2xl font-semibold uppercase leading-tight text-[#D7E2EA] sm:text-3xl md:text-[clamp(2rem,4vw,3.8rem)]">
+            <h3 className="max-w-5xl break-words text-2xl font-semibold uppercase leading-[1.18] text-[#D7E2EA] sm:text-3xl sm:leading-[1.20] md:text-[clamp(1.8rem,3vw,3rem)] md:leading-[1.24] lg:text-[clamp(2rem,2.8vw,3.2rem)] lg:leading-[1.28]">
               {item.name}
             </h3>
           </div>
@@ -746,37 +747,43 @@ function ProjectCard({
 
         <div className="grid gap-3 md:grid-cols-[40%_60%]">
           <div className="grid gap-3">
-            <img
-              src={images[0]}
-              alt="Template visual"
-              loading="lazy"
-              className="h-[clamp(130px,16vw,230px)] w-full rounded-[30px] object-cover sm:rounded-[40px] md:rounded-[50px]"
-            />
-            <img
-              src={images[1]}
-              alt="Template visual"
-              loading="lazy"
-              className="h-[clamp(160px,22vw,340px)] w-full rounded-[30px] object-cover sm:rounded-[40px] md:rounded-[50px]"
-            />
+            <div className="group relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[50px]">
+              <img
+                src={images[0]}
+                alt="Template visual"
+                loading="lazy"
+                className="h-[clamp(130px,16vw,230px)] w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/15" />
+              <div className="absolute left-1/2 top-4 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/20 bg-black/45 px-4 py-2 text-center text-[10px] font-medium uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:top-5 sm:px-5 sm:text-xs md:top-6">
+                {item.metrics[0]}
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[50px]">
+              <img
+                src={images[1]}
+                alt="Template visual"
+                loading="lazy"
+                className="h-[clamp(160px,22vw,340px)] w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/15" />
+              <div className="absolute left-1/2 top-4 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/20 bg-black/45 px-4 py-2 text-center text-[10px] font-medium uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:top-5 sm:px-5 sm:text-xs md:top-6">
+                {item.metrics[1]}
+              </div>
+            </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[50px]">
+          <div className="group relative overflow-hidden rounded-[30px] sm:rounded-[40px] md:rounded-[50px]">
             <img
               src={images[2]}
               alt="Template visual"
               loading="lazy"
-              className="h-full min-h-[320px] w-full object-cover md:min-h-0"
+              className="h-full min-h-[320px] w-full object-cover transition duration-500 group-hover:scale-[1.02] md:min-h-0"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 grid gap-2 sm:grid-cols-3">
-              {item.metrics.map((metric) => (
-                <div
-                  key={metric}
-                  className="rounded-full border border-white/20 bg-black/40 px-3 py-2 text-center text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-md sm:text-xs"
-                >
-                  {metric}
-                </div>
-              ))}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/25" />
+            <div className="absolute left-1/2 top-4 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/20 bg-black/45 px-4 py-2 text-center text-[10px] font-medium uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:top-5 sm:px-5 sm:text-xs md:top-6">
+              {item.metrics[2]}
             </div>
           </div>
         </div>
