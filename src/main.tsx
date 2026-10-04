@@ -476,10 +476,10 @@ function HeroSection({ lang, setLang, t }: { lang: Lang; setLang: (v: Lang) => v
             bg-gradient-to-b
             from-[#22242a]
             to-[#0c0c0c]
-            shadow-[0_0_90px_rgba(99,102,241,0.22)]
+            shadow-[0_0_80px_rgba(99,102,241,0.18)]
             sm:w-[330px]
             md:w-[370px]
-            lg:w-[410px]
+            lg:w-[400px]
             xl:w-[430px]
           "
         >
