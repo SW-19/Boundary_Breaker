@@ -646,7 +646,7 @@ function AboutSection({ t }: { t: Copy }) {
   );
 }
 
-const expertiseIcons = [Sigma, BrainCircuit, Orbit, Database, Network];
+const expertiseIcons = [Sigma, BrainCircuit, Database, Orbit, Network];
 
 function ServicesSection({ t }: { t: Copy }) {
   return (
@@ -862,7 +862,7 @@ function Footer({ t }: { t: Copy }) {
     <footer id="contact" className="relative overflow-hidden border-t border-[#D7E2EA]/10 px-5 py-24 sm:px-8 md:px-10 md:py-32">
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center">
         <Sparkles className="mb-6 text-cyan-200/70" size={34} />
-        <h2 className="hero-heading max-w-5xl text-[clamp(2rem,9vw,100px)] font-black uppercase leading-[.9] tracking-tight">
+        <h2 className="hero-heading max-w-5xl text-[clamp(1.5rem,7vw,80px)] font-black uppercase leading-[.9] tracking-tight">
           {t.footer.title}
         </h2>
         <div className="mt-10">
