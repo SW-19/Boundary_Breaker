@@ -181,22 +181,22 @@ const copy: Record<Lang, Copy> = {
       live: '查看详情',
       items: [
         {
-          category: '机器学习 + 优化',
+          category: '算法实现',
           name: '基于神经网络与遗传算法的功能材料性能预测与多参数优化',
           description: '完成特征相关性分析、回归模型对比、神经网络代理建模与遗传算法寻优，并通过靶向实验形成“数据挖掘—代理模型—决策寻优—实验验证”的闭环。',
           metrics: ['机器学习', '优化算法', '电子功能材料'],
         },
         {
-          category: '多模态数据',
+          category: '数据处理',
           name: '中国空间站大规模多模态时序与图像数据自动化处理 Pipeline 搭建',
           description: '将高频温度时序与大规模图像流按时间戳严格对应，自动提取图像特征，把非结构化实验数据转化为结构化高维特征数据库。',
-          metrics: ['百万级图像', '太空算力', '时序数据'],
+          metrics: ['多模态数据', '批量处理', '太空算力'],
         },
         {
-          category: '计算机视觉',
+          category: '机制研究',
           name: '基于计算机视觉与数值模拟的软磁材料构效机理研究',
           description: '利用图像分割建立结构描述符，采用分子动力学模拟和相场模拟建立物理模型，量化微观结构对多频段电磁损耗的作用机制。',
-          metrics: ['图像处理', '数值模拟', '物理模型'],
+          metrics: ['图像处理', '数值模拟', '物理机制'],
         },
       ],
     },
@@ -218,18 +218,19 @@ const marqueeImages = [
 
 const projectImages = [
   [
-    `${import.meta.env.BASE_URL}public/Project1-1.jpg`,
-    `${import.meta.env.BASE_URL}public/Project1-2.jpg`,
-    `${import.meta.env.BASE_URL}public/Project1-3.jpg`,
-  [
-    `${import.meta.env.BASE_URL}public/Project2-1.jpg`,
-    `${import.meta.env.BASE_URL}public/Project2-2.jpg`,
-    `${import.meta.env.BASE_URL}public/Project2-3.jpg`,
+    `${import.meta.env.BASE_URL}Project1-1.jpg`,
+    `${import.meta.env.BASE_URL}Project1-2.jpg`,
+    `${import.meta.env.BASE_URL}Project1-3.jpg`,
   ],
   [
-    `${import.meta.env.BASE_URL}public/Project3-1.jpg`,
-    `${import.meta.env.BASE_URL}public/Project3-2.jpg`,
-    `${import.meta.env.BASE_URL}public/Project3-3.jpg`,
+    `${import.meta.env.BASE_URL}Project2-1.jpg`,
+    `${import.meta.env.BASE_URL}Project2-2.jpg`,
+    `${import.meta.env.BASE_URL}Project2-3.jpg`,
+  ],
+  [
+    `${import.meta.env.BASE_URL}Project3-1.jpg`,
+    `${import.meta.env.BASE_URL}Project3-2.jpg`,
+    `${import.meta.env.BASE_URL}Project3-3.jpg`,
   ],
 ];
 
