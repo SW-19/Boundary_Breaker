@@ -213,7 +213,15 @@ const copy: Record<Lang, Copy> = {
 };
 
 const marqueeImages = [
-
+`${import.meta.env.BASE_URL}Project1-1.jpg`,
+    `${import.meta.env.BASE_URL}Project1-2.jpg`,
+    `${import.meta.env.BASE_URL}Project1-3.jpg`,
+  `${import.meta.env.BASE_URL}Project2-1.jpg`,
+    `${import.meta.env.BASE_URL}Project2-2.jpg`,
+    `${import.meta.env.BASE_URL}Project2-3.jpg`,
+      `${import.meta.env.BASE_URL}Project3-1.jpg`,
+    `${import.meta.env.BASE_URL}Project3-2.jpg`,
+    `${import.meta.env.BASE_URL}Project3-3.jpg`,
 ];
 
 const projectImages = [
