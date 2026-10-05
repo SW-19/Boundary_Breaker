@@ -135,9 +135,9 @@ const copy: Record<Lang, Copy> = {
       title: '你好，我是刘幻',
       subtitle: '我的标签',
       tags: [
-        '数学建模',
-        '多目标优化',
         '多模态数据',
+        '多目标优化',
+        '数学建模',
         '机器学习',
         '人工智能',
         '数值模拟',
@@ -149,30 +149,30 @@ const copy: Record<Lang, Copy> = {
       heading: '关于我',
       badge: '浙江大学 · 直博 · 材料科学与工程',
       body:
-        '我将数学建模、机器学习与实验科学结合，项目覆盖强非线性代理模型、遗传算法参数寻优、大规模多模态图像与时序数据处理、计算机视觉和科学计算。我擅长从噪声与异常数据中识别底层结构，并把洞察转化为可实验验证、可复现、可持续迭代的模型与流程。',
+        '我拥有极强的数学与逻辑推导底色，曾获多项数学类奖项。具备严谨的数理统计与实验科学思维，善于从海量异构数据中洞察底层规律，通过数据建模驱动科学决策与业务增长。 具备丰富的特征工程实施、经典机器学习及神经网络实战经验，精通将深度学习代理模型与启发式算法结合，解决高维复杂空间下的智能决策与参数寻优难题。具备扎实的数据工程素养，主导搭建过处理数百万级图像与复杂时序数据的自动化清洗与分析 Pipeline；擅长非结构化数据的特征结构化抽象与指标体系规划，具备出色的全流程数据流转与交付能力。面对反常数据敢于打破经验局限，运用严格的因果推断与交叉验证深入定位核心归因。在国家重大科研攻坚与大型国际活动中积累了卓越的跨团队沟通与资源协调能力，自驱力极强，对用数据科学解决高挑战性业务问题充满热情。',
     },
     expertise: {
       heading: '核心能力',
       items: [
         {
           name: '数理统计与实验设计',
-          description: '概率统计、假设检验、方差分析、DOE/控制变量分析与因果推断基础，强调指标归因与置信区间。',
+          description: '我具备深厚的数理底蕴，熟练掌握概率统计、假设检验、方差分析与因果推断基础。具备严谨的科研思维与指标归因分析能力，能够通过科学的实验设计研究物理机制。',
         },
         {
           name: '机器学习与特征工程',
-          description: '高维特征筛选、连续变量分箱、相关性与共线性分析，以及 LASSO、随机森林、LightGBM、SVR、神经网络等模型。',
+          description: '精通特征工程方法论（高维特征筛选、连续变量分箱、相关性与共线性分析）。熟练掌握回归、分类、聚类及经典机器学习模型，熟练使用Python和MATLAB，掌握遗传算法等启发式优化，熟悉Attention 机制与前沿大模型原理。',
         },
         {
-          name: '多目标优化',
-          description: '将神经网络代理模型与遗传算法、启发式搜索结合，用于高维复杂空间的参数寻优与智能决策。',
+          name: '数据工程与算法开发',
+          description: '精通 Python（Pandas、NumPy、SciPy、Scikit-learn、PyTorch）数据科学计算生态，具备熟练的 SQL 数据提取与复杂查询能力。擅长构建端到端的数据自动化清洗、特征提取与批处理Pipeline，具备百万级多模态（时序、图像、传感器）数据处理与工程落地能力。',
         },
         {
-          name: '多模态数据处理',
-          description: '使用 Python / SQL 构建端到端数据清洗、特征提取与批处理 Pipeline，覆盖图像、传感器和高频时序数据。',
+          name: '业务洞察与批判性思维',
+          description: '擅长将模糊、复杂的系统性业务问题抽象拆解为可求解的数学模型；具备强烈的指标意识、逻辑分析能力与批判性思维，善于从海量异常数据中定位核心归因，驱动策略迭代优化。',
         },
         {
-          name: '数理计算',
-          description: '计算机视觉、分子动力学、有限元仿真与物理机理分析，实现跨尺度数据与理论的交叉验证。',
+          name: '综合技能与证书',
+          description: 'CET-4 和 CET-6，计算机二级（C 语言），计算机三级（网络技术）',
         },
       ],
     },
@@ -861,7 +861,7 @@ function Footer({ t }: { t: Copy }) {
     <footer id="contact" className="relative overflow-hidden border-t border-[#D7E2EA]/10 px-5 py-24 sm:px-8 md:px-10 md:py-32">
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center">
         <Sparkles className="mb-6 text-cyan-200/70" size={34} />
-        <h2 className="hero-heading max-w-5xl text-[clamp(3rem,9vw,120px)] font-black uppercase leading-[.9] tracking-tight">
+        <h2 className="hero-heading max-w-5xl text-[clamp(2rem,9vw,100px)] font-black uppercase leading-[.9] tracking-tight">
           {t.footer.title}
         </h2>
         <div className="mt-10">
