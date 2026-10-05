@@ -202,12 +202,12 @@ const copy: Record<Lang, Copy> = {
     },
     honors: {
       heading: '奖誉',
-      subtitle: '竞赛 · 奖学金 · 荣誉',
+      subtitle: '·',
       placeholder: '添加奖誉图片',
     },
     footer: {
-      title: '用数据建模，用证据验证。',
-      note: '页面依据你提供的视觉规范改造。正式公开前，建议将模板项目图片替换为你自己的科研图片或可公开成果。',
+      title: '让数据说话，用证据验证。',
+      note: ' ',
     },
   },
 };
@@ -219,9 +219,9 @@ const marqueeImages = [
   `${import.meta.env.BASE_URL}Project2-1.jpg`,
     `${import.meta.env.BASE_URL}Project2-2.jpg`,
     `${import.meta.env.BASE_URL}Project2-3.jpg`,
-      `${import.meta.env.BASE_URL}Project3-1.jpg`,
-    `${import.meta.env.BASE_URL}Project3-2.jpg`,
-    `${import.meta.env.BASE_URL}Project3-3.jpg`,
+      `${import.meta.env.BASE_URL}Project3-1.png`,
+    `${import.meta.env.BASE_URL}Project3-2.png`,
+    `${import.meta.env.BASE_URL}Project3-3.png`,
 ];
 
 const projectImages = [
@@ -236,17 +236,16 @@ const projectImages = [
     `${import.meta.env.BASE_URL}Project2-3.jpg`,
   ],
   [
-    `${import.meta.env.BASE_URL}Project3-1.jpg`,
-    `${import.meta.env.BASE_URL}Project3-2.jpg`,
-    `${import.meta.env.BASE_URL}Project3-3.jpg`,
+    `${import.meta.env.BASE_URL}Project3-1.png`,
+    `${import.meta.env.BASE_URL}Project3-2.png`,
+    `${import.meta.env.BASE_URL}Project3-3.png`,
   ],
 ];
 
 const honorImages: string[] = [
-  // 预留：把奖誉图片放进 public/honors/ 后，在这里加入路径，例如：
-  // `${import.meta.env.BASE_URL}honors/honor-01.jpg`,
-  // `${import.meta.env.BASE_URL}honors/honor-02.jpg`,
-  // `${import.meta.env.BASE_URL}honors/honor-03.jpg`,
+`${import.meta.env.BASE_URL}honor-1.jpg`,
+`${import.meta.env.BASE_URL}honor-2.jpg`,
+`${import.meta.env.BASE_URL}honor-3.jpg`,
 ];
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
